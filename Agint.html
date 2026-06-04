@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مبادرة الذكاء الاصطناعي المؤسسي — جامعة الطائف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700;800&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald-950:#04231A; --emerald-900:#073324; --emerald-800:#0A4030;
+    --emerald-700:#0F5240; --emerald-600:#15715A;
+    --gold:#D4AF55; --gold-bright:#EBC97A; --gold-deep:#B8902F;
+    --cream:#F4EEDF; --cream-dim:#C9C2AD; --line:rgba(212,175,85,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Tajawal',sans-serif;background:var(--emerald-950);color:var(--cream);
+    line-height:1.9;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.disp{font-family:'El Messiri',serif;font-weight:600;line-height:1.35}
+  .kufi{font-family:'Reem Kufi',sans-serif}
+
+  .bg-wrap{position:fixed;inset:0;z-index:-2;background:
+    radial-gradient(900px 600px at 85% -5%, rgba(21,113,90,.45), transparent 60%),
+    radial-gradient(800px 700px at 0% 100%, rgba(212,175,85,.10), transparent 55%),
+    linear-gradient(160deg,var(--emerald-950),var(--emerald-900) 55%,var(--emerald-950));}
+  .grain{position:fixed;inset:0;z-index:-1;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:0 26px}
+
+  /* progress bar */
+  .prog{position:fixed;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-bright),var(--gold-deep));width:0;z-index:60;box-shadow:0 0 10px var(--gold)}
+
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(4,35,26,.78);border-bottom:1px solid var(--line)}
+  nav .row{display:flex;align-items:center;justify-content:space-between;padding:13px 26px;max-width:1100px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px}
+  .crest{width:46px;height:46px;flex:none;display:block;filter:drop-shadow(0 6px 16px rgba(212,175,85,.3))}
+  .hero-seal{width:120px;height:120px;margin:0 auto 28px;display:block;filter:drop-shadow(0 12px 28px rgba(212,175,85,.28));animation:sealIn 1s ease both}
+  @keyframes sealIn{from{opacity:0;transform:scale(.85) rotate(-8deg)}to{opacity:1;transform:none}}
+  .brand b{font-family:'El Messiri';font-size:1.05rem}
+  .brand span{display:block;font-size:.7rem;color:var(--gold);letter-spacing:.5px}
+  .navlinks{display:flex;gap:4px;flex-wrap:wrap}
+  .navlinks a{color:var(--cream-dim);text-decoration:none;font-size:.82rem;padding:7px 12px;border-radius:20px;transition:.25s}
+  .navlinks a:hover{color:var(--emerald-950);background:var(--gold)}
+  @media(max-width:880px){.navlinks{display:none}}
+
+  header{position:relative;padding:96px 0 76px;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:.82rem;letter-spacing:3px;
+    border:1px solid var(--line);padding:8px 20px;border-radius:30px;margin-bottom:30px}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+  header h1{font-size:clamp(2.3rem,6vw,4.1rem);letter-spacing:-.5px}
+  header h1 .hl{color:transparent;background:linear-gradient(120deg,var(--gold-bright),var(--gold) 50%,var(--gold-deep));-webkit-background-clip:text;background-clip:text}
+  header p.sub{max-width:640px;margin:24px auto 0;color:var(--cream-dim);font-size:1.14rem}
+  .hero-meta{margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .chip{font-size:.84rem;padding:9px 18px;border-radius:24px;background:rgba(212,175,85,.08);border:1px solid var(--line)}
+  .chip b{color:var(--gold)}
+  .scroll-cue{margin-top:46px;color:var(--cream-dim);font-size:.8rem;animation:bob 2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  section.blk{padding:62px 0;border-top:1px solid rgba(212,175,85,.10)}
+  .sec-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:14px}
+  .sec-no{font-family:'El Messiri';font-size:2.6rem;color:var(--gold-deep);opacity:.55;line-height:1}
+  .sec-head h2{font-size:clamp(1.5rem,3.4vw,2.15rem)}
+  .sec-head .ln{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
+  .kicker{color:var(--gold);font-size:.85rem;letter-spacing:2px;margin-bottom:6px;font-weight:500}
+
+  .lead{font-size:1.06rem;color:var(--cream-dim);max-width:820px;margin-bottom:14px}
+  .lead .em{color:var(--gold-bright);font-weight:500}
+  p.para{font-size:1rem;color:var(--cream-dim);max-width:840px;margin-bottom:12px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px}
+  @media(max-width:780px){.grid3,.grid2{grid-template-columns:1fr}}
+
+  .pcard{background:linear-gradient(160deg,rgba(15,82,64,.4),rgba(7,51,36,.5));
+    border:1px solid var(--line);border-radius:18px;padding:24px;position:relative;overflow:hidden;transition:.3s}
+  .pcard:hover{transform:translateY(-5px);border-color:var(--gold)}
+  .pcard .ic{font-size:1.7rem;margin-bottom:12px}
+  .pcard h3{color:var(--gold);font-size:1.12rem;margin-bottom:8px}
+  .pcard h4{color:var(--cream);font-size:1.05rem;margin-bottom:8px}
+  .pcard p{font-size:.93rem;color:var(--cream-dim)}
+  .pcard.benefit{border-top:3px solid var(--gold)}
+
+  ul.gilded{list-style:none;margin-top:8px}
+  ul.gilded li{font-size:.94rem;color:var(--cream-dim);padding:6px 0;padding-right:24px;position:relative}
+  ul.gilded li::before{content:"◆";position:absolute;right:0;top:7px;color:var(--gold);font-size:.7rem}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+  @media(max-width:780px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{text-align:center;background:rgba(212,175,85,.05);border:1px solid var(--line);border-radius:16px;padding:26px 12px}
+  .stat .num{font-family:'El Messiri';font-size:2.4rem;color:var(--gold);line-height:1}
+  .stat .lbl{font-size:.84rem;color:var(--cream-dim);margin-top:8px}
+
+  .acc{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .acc-item{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(7,51,36,.4)}
+  .acc-q{width:100%;text-align:right;background:none;border:0;color:var(--cream);font-family:'Tajawal';
+    font-size:1.02rem;font-weight:500;padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .acc-q:hover{color:var(--gold)}
+  .acc-q .sign{color:var(--gold);font-size:1.4rem;transition:.3s;flex:none}
+  .acc-item.open .acc-q .sign{transform:rotate(45deg)}
+  .acc-a{max-height:0;overflow:hidden;transition:max-height .45s ease;color:var(--cream-dim);font-size:.95rem}
+  .acc-a div{padding:0 20px 20px}
+  .acc-a b{color:var(--gold-bright);font-weight:500}
+
+  /* compliance pillars */
+  .reg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+  @media(max-width:880px){.reg{grid-template-columns:1fr}}
+  .regcard{background:linear-gradient(165deg,rgba(15,82,64,.5),rgba(4,35,26,.6));
+    border:1px solid var(--gold);border-radius:20px;padding:26px;position:relative}
+  .regcard .badge{display:inline-block;font-family:'Reem Kufi';font-size:.72rem;color:var(--emerald-950);
+    background:var(--gold);padding:4px 12px;border-radius:14px;margin-bottom:14px;letter-spacing:1px}
+  .regcard h3{color:var(--cream);font-size:1.18rem;margin-bottom:4px}
+  .regcard .auth{color:var(--gold);font-size:.84rem;margin-bottom:14px}
+  .regcard p{font-size:.9rem;color:var(--cream-dim);margin-bottom:14px}
+  .regcard .map{font-size:.86rem;color:var(--cream);padding:8px 0;padding-right:22px;position:relative;border-top:1px dashed var(--line)}
+  .regcard .map::before{content:"✓";position:absolute;right:0;top:8px;color:var(--gold);font-weight:700}
+
+  /* 7 principles grid */
+  .princ{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+  @media(max-width:880px){.princ{grid-template-columns:repeat(2,1fr)}}
+  .pr{background:rgba(212,175,85,.06);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;transition:.3s}
+  .pr:hover{background:rgba(212,175,85,.13);transform:translateY(-3px)}
+  .pr .pic{font-size:1.5rem;margin-bottom:6px}
+  .pr b{display:block;color:var(--gold);font-family:'El Messiri';font-size:1rem}
+  .pr span{font-size:.78rem;color:var(--cream-dim)}
+
+  /* roadmap */
+  .road{position:relative;margin-top:30px;padding-right:34px}
+  .road::before{content:"";position:absolute;right:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),rgba(212,175,85,.15))}
+  .step{position:relative;margin-bottom:14px;cursor:pointer}
+  .step .bullet{position:absolute;right:-30px;top:6px;width:24px;height:24px;border-radius:50%;
+    background:var(--emerald-900);border:2px solid var(--gold);display:grid;place-items:center;
+    color:var(--gold);font-size:.78rem;font-weight:700;font-family:'El Messiri';transition:.3s;z-index:2}
+  .step.active .bullet{background:var(--gold);color:var(--emerald-950);box-shadow:0 0 16px rgba(212,175,85,.6)}
+  .step .body{background:rgba(15,82,64,.32);border:1px solid var(--line);border-radius:14px;padding:16px 20px;transition:.3s}
+  .step.active .body{border-color:var(--gold);background:rgba(15,82,64,.55)}
+  .step .body h3{color:var(--cream);font-size:1.08rem;display:flex;justify-content:space-between;gap:10px}
+  .step .body h3 .dur{font-family:'Tajawal';font-size:.82rem;color:var(--gold);font-weight:500}
+  .step .detail{max-height:0;overflow:hidden;transition:max-height .45s ease;color:var(--cream-dim);font-size:.93rem}
+  .step.active .detail{max-height:200px;margin-top:10px}
+
+  /* calculator */
+  .calc{margin-top:24px;background:linear-gradient(160deg,rgba(15,82,64,.5),rgba(7,51,36,.6));border:1px solid var(--line);border-radius:22px;padding:30px}
+  .calc-row{display:flex;gap:26px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .calc-controls{flex:1;min-width:280px}
+  .ctl{margin-bottom:22px}
+  .ctl label{display:block;font-size:.9rem;color:var(--cream-dim);margin-bottom:10px}
+  .ctl label b{color:var(--gold);font-family:'El Messiri';font-size:1.15rem}
+  input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:5px;
+    background:linear-gradient(90deg,var(--gold) var(--pct,11%),rgba(212,175,85,.18) var(--pct,11%));outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+    background:var(--gold-bright);cursor:pointer;border:3px solid var(--emerald-900);box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  .toggle{display:flex;gap:8px;background:rgba(4,35,26,.5);padding:5px;border-radius:30px;border:1px solid var(--line)}
+  .toggle button{flex:1;background:none;border:0;color:var(--cream-dim);font-family:'Tajawal';font-weight:500;font-size:.9rem;padding:10px;border-radius:24px;cursor:pointer;transition:.25s}
+  .toggle button.on{background:var(--gold);color:var(--emerald-950);font-weight:700}
+  .calc-out{flex:none;width:290px;text-align:center;background:rgba(4,35,26,.55);border:1px solid var(--gold);border-radius:18px;padding:26px}
+  @media(max-width:680px){.calc-out{width:100%}}
+  .calc-out .small{font-size:.82rem;color:var(--cream-dim)}
+  .calc-out .price{font-family:'El Messiri';font-size:2.9rem;color:var(--gold-bright);line-height:1.1;margin:6px 0}
+  .calc-out .sar{font-size:1.05rem}
+  .calc-out .per{font-size:.8rem;color:var(--cream-dim);margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+  .note{font-size:.8rem;color:var(--cream-dim);margin-top:16px;opacity:.85}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+  @media(max-width:680px){.vs{grid-template-columns:1fr}}
+  .vcard{border-radius:18px;padding:24px;border:1px solid var(--line)}
+  .vcard.bad{background:rgba(80,30,30,.25)}
+  .vcard.good{background:rgba(15,82,64,.5);border-color:var(--gold)}
+  .vcard h3{font-size:1.12rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .vcard.bad h3{color:#E5A3A3}.vcard.good h3{color:var(--gold)}
+  .vcard ul{list-style:none}
+  .vcard li{font-size:.92rem;color:var(--cream-dim);padding:7px 0;padding-right:24px;position:relative}
+  .vcard li::before{position:absolute;right:0;top:7px}
+  .vcard.bad li::before{content:"✕";color:#C97A7A}.vcard.good li::before{content:"✓";color:var(--gold)}
+
+  /* table */
+  .tbl{margin-top:22px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:.92rem}
+  th{background:var(--emerald-800);color:var(--gold);font-family:'El Messiri';font-weight:600;padding:14px 16px;text-align:right}
+  td{padding:13px 16px;color:var(--cream-dim);border-top:1px solid rgba(212,175,85,.12)}
+  tr:nth-child(even) td{background:rgba(212,175,85,.03)}
+  td b{color:var(--cream)}
+
+  .quote{margin-top:26px;border-right:3px solid var(--gold);padding:8px 22px;background:rgba(212,175,85,.05);border-radius:0 12px 12px 0}
+  .quote p{font-family:'El Messiri';font-size:1.15rem;color:var(--cream);line-height:1.7}
+  .quote span{font-size:.85rem;color:var(--gold)}
+
+  .close-blk{text-align:center;padding:84px 0}
+  .close-blk h2{font-size:clamp(1.6rem,4vw,2.5rem);max-width:740px;margin:0 auto 18px}
+  .close-blk h2 .hl{color:var(--gold)}
+  .cta{display:inline-block;margin-top:26px;background:linear-gradient(120deg,var(--gold-bright),var(--gold-deep));
+    color:var(--emerald-950);font-family:'El Messiri';font-weight:700;font-size:1.05rem;padding:15px 42px;border-radius:32px;
+    text-decoration:none;box-shadow:0 10px 30px rgba(212,175,85,.3);transition:.3s}
+  .cta:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(212,175,85,.45)}
+  footer{text-align:center;padding:36px;color:var(--cream-dim);font-size:.82rem;border-top:1px solid var(--line)}
+  footer .motto{color:var(--gold);font-family:'Reem Kufi';margin-bottom:6px}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="bg-wrap"></div><div class="grain"></div>
+<div class="prog" id="prog"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="tuSeal" viewBox="0 0 120 120">
+    <radialGradient id="sgInner" cx="50%" cy="36%" r="72%">
+      <stop offset="0%" stop-color="#0F5240"/><stop offset="100%" stop-color="#04231A"/>
+    </radialGradient>
+    <linearGradient id="sgGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EBC97A"/><stop offset="55%" stop-color="#D4AF55"/><stop offset="100%" stop-color="#B8902F"/>
+    </linearGradient>
+    
+    <path id="arcBottom" d="M 26 66 A 36 36 0 0 0 94 66" fill="none"/>
+    
+    <path id="arcTop" d="M 26 54 A 36 36 0 0 1 94 54" fill="none"/>
+    
+    <circle cx="60" cy="60" r="57" fill="url(#sgInner)" stroke="url(#sgGold)" stroke-width="3"/>
+    <circle cx="60" cy="60" r="48" fill="none" stroke="url(#sgGold)" stroke-width="1" opacity=".65"/>
+    
+    <text x="60" y="68" text-anchor="middle" font-family="El Messiri, serif" font-weight="700" font-size="33" fill="url(#sgGold)" letter-spacing="1">TU</text>
+    
+    <text font-family="Reem Kufi, sans-serif" font-size="9" fill="#EBC97A" letter-spacing="1">
+      <textPath href="#arcTop" startOffset="50%" text-anchor="middle">جامعة الطائف</textPath>
+    </text>
+    
+    <text font-family="Reem Kufi, sans-serif" font-size="6.6" fill="#D4AF55" letter-spacing="2">
+      <textPath href="#arcBottom" startOffset="50%" text-anchor="middle">TAIF UNIVERSITY</textPath>
+    </text>
+    
+    <g fill="#D4AF55">
+      <circle cx="60" cy="8.5" r="1.7"/><circle cx="111.5" cy="60" r="1.7"/><circle cx="8.5" cy="60" r="1.7"/>
+    </g>
+    <path d="M 44 43 h 32" stroke="url(#sgGold)" stroke-width="1" opacity=".5"/>
+  </symbol>
+</defs></svg>
+
+<nav>
+  <div class="row">
+    <div class="brand"><svg class="crest"><use href="#tuSeal"/></svg>
+      <div><b>جامعة الطائف</b><span class="kufi">التعليم · البحث · الإبداع</span></div></div>
+    <div class="navlinks">
+      <a href="#why">المبرّر</a><a href="#benefits">الفوائد</a><a href="#cases">الاستخدامات</a>
+      <a href="#compliance">التوافق التنظيمي</a><a href="#road">خارطة الطريق</a>
+      <a href="#calc">التكلفة</a><a href="#close">التوصية</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <svg class="hero-seal"><use href="#tuSeal"/></svg>
+    <div class="eyebrow"><span class="dot"></span> مبادرة مقترحة · رؤية المملكة ٢٠٣٠</div>
+    <h1>حسابات <span class="hl">الذكاء الاصطناعي</span><br>المؤسسية</h1>
+    <p class="sub">تمكينٌ آمن ومنظّم لمنسوبي الكليات والإدارات من أدوات الذكاء الاصطناعي — متوافق مع الأطر الوطنية للأمن السيبراني والذكاء الاصطناعي، وامتدادٌ لسياسة الجامعة في توفير الأدوات الاحترافية لكل وحدة.</p>
+    <div class="hero-meta">
+      <div class="chip">نموذج تجريبي على <b>كلية إدارة الأعمال</b></div>
+      <div class="chip">متوافق مع <b>سدايا</b> و <b>NCA</b> و <b>PDPL</b></div>
+      <div class="chip">عائد متوقع <b>مرتفع</b></div>
+    </div>
+    <div class="scroll-cue">⌄ مرّر للأسفل لاستكشاف المبادرة بالكامل</div>
+  </div>
+</header>
+
+<section class="blk" id="why">
+  <div class="wrap reveal">
+    <div class="kicker">السياق والمبرّر</div>
+    <div class="sec-head"><span class="sec-no">٠١</span><h2>لماذا الآن، ولماذا مؤسسيًا؟</h2><span class="ln"></span></div>
+    <p class="para">تنسجم هذه المبادرة مع توجّه المملكة في رؤية ٢٠٣٠ نحو التحوّل الرقمي وريادة الذكاء الاصطناعي، ومع ما تتبنّاه الجامعة فعليًا من سياسةٍ راسخة في توفير الأدوات الاحترافية المتخصصة لكل وحدة: حزمة المكتب للإدارات، وأوتوكاد لكلية الهندسة، وأنظمة التحليل الإحصائي لأقسام المحاسبة وإدارة الأعمال والبحوث.</p>
+    <p class="para">الفرق أن الذكاء الاصطناعي التوليدي ليس أداةً متخصصة بوحدةٍ واحدة، بل أداةٌ <span class="em">عرضية</span> تخدم كل وحدةٍ أكاديمية وإدارية دون استثناء. ومن ثمّ فإن تركه دون اعتمادٍ مؤسسي منظّم يخلق ثلاث فجوات حقيقية:</p>
+    <div class="grid3">
+      <div class="pcard"><div class="ic">🔓</div><h3>فجوة أمنية</h3><p>لجوء المنسوبين إلى حسابات شخصية مجانية غير مؤمَّنة يعرّض بيانات الجامعة للتسريب، ويخالف ضوابط الأمن السيبراني الوطنية.</p></div>
+      <div class="pcard"><div class="ic">📊</div><h3>فجوة حوكمة</h3><p>تفاوتٌ كبير في مستوى الاستفادة بين المنسوبين، وغياب أي معيارٍ موحّد أو سياسة استخدامٍ أو رقابة.</p></div>
+      <div class="pcard"><div class="ic">⏳</div><h3>فجوة فرصة</h3><p>ضياع مكاسب الإنتاجية وجودة المخرجات على مستوى المؤسسة، وتأخّر الجامعة عن نظيراتها في تبنّي الأدوات الحديثة.</p></div>
+    </div>
+    <div class="quote"><p>«الاعتماد المؤسسي المنظّم يحوّل الذكاء الاصطناعي من مخاطرةٍ غير مُدارة إلى أصلٍ مؤسسيٍّ آمنٍ ومُنتج.»</p><span>— جوهر المبادرة</span></div>
+  </div>
+</section>
+
+<section class="blk" id="benefits">
+  <div class="wrap reveal">
+    <div class="kicker">العائد على الجامعة ومنسوبيها</div>
+    <div class="sec-head"><span class="sec-no">٠٢</span><h2>الفوائد والمكاسب</h2><span class="ln"></span></div>
+    <p class="para">تنعكس المبادرة بمنافع ملموسة على ثلاثة مستويات مترابطة — المؤسسة، والمنسوب، والطالب والمجتمع:</p>
+    <div class="grid3">
+      <div class="pcard benefit"><div class="ic">🏛️</div><h4>على مستوى الجامعة</h4>
+        <ul class="gilded">
+          <li>رفع الكفاءة التشغيلية وتقليص زمن إنجاز المعاملات</li>
+          <li>تحويل الإجراءات الورقية إلى رقمية مؤتمتة</li>
+          <li>حماية موحّدة للبيانات وحوكمة مركزية</li>
+          <li>تعزيز مكانة الجامعة كمؤسسة رائدة رقميًا</li>
+          <li>دعم مؤشرات التحول الرقمي ورؤية ٢٠٣٠</li>
+        </ul></div>
+      <div class="pcard benefit"><div class="ic">👤</div><h4>على مستوى المنسوب</h4>
+        <ul class="gilded">
+          <li>توفير ساعات عملٍ أسبوعية في المهام الروتينية</li>
+          <li>رفع جودة المراسلات والتقارير والعروض</li>
+          <li>اكتساب مهارات الذكاء الاصطناعي ضمن بيئة آمنة</li>
+          <li>تقليل الضغط وإعادة توجيه الجهد لمهام أعلى قيمة</li>
+          <li>أداة معتمدة بدل الحلول الفردية غير الموثوقة</li>
+        </ul></div>
+      <div class="pcard benefit"><div class="ic">🎓</div><h4>على مستوى الطالب والمجتمع</h4>
+        <ul class="gilded">
+          <li>خدمات طلابية أسرع وأكثر دقة</li>
+          <li>محتوى أكاديمي ومناهج أحدث وأجود</li>
+          <li>تخريج كوادر ملمّة بأدوات العصر</li>
+          <li>تعزيز ثقافة الابتكار المسؤول</li>
+          <li>أثر إيجابي على سمعة الجامعة مجتمعيًا</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="value">
+  <div class="wrap reveal">
+    <div class="kicker">الجدوى الكميّة</div>
+    <div class="sec-head"><span class="sec-no">٠٣</span><h2>العائد المتوقّع بالأرقام</h2><span class="ln"></span></div>
+    <p class="para">بافتراض توفير كل منسوب <span class="em">٣ ساعات</span> أسبوعيًا في المهام الكتابية والتحليلية، خلال تجربةٍ من ١٠ حسابات لفصلٍ دراسي واحد:</p>
+    <div class="stats">
+      <div class="stat"><div class="num" data-to="10">٠</div><div class="lbl">حسابات في التجربة</div></div>
+      <div class="stat"><div class="num" data-to="30">٠</div><div class="lbl">ساعة موفّرة أسبوعيًا</div></div>
+      <div class="stat"><div class="num" data-to="480">٠</div><div class="lbl">ساعة خلال الفصل</div></div>
+      <div class="stat"><div class="num" data-to="80" suf="٪">٠</div><div class="lbl">مستهدف التفعيل النشط</div></div>
+    </div>
+    <p class="para" style="margin-top:24px">هذه الساعات لا تعني تقليص الكوادر، بل <span class="em">إعادة توجيهها</span> نحو مهامّ ذات قيمةٍ أعلى: التخطيط، والتطوير، وخدمة المستفيدين — بعائدٍ استثماري مرتفع مقارنةً بكلفةٍ تجريبية محدودة.</p>
+  </div>
+</section>
+
+<section class="blk" id="cases">
+  <div class="wrap reveal">
+    <div class="kicker">التطبيقات العملية</div>
+    <div class="sec-head"><span class="sec-no">٠٤</span><h2>حالات الاستخدام حسب الوحدة</h2><span class="ln"></span></div>
+    <p class="para">لكل وحدةٍ احتياجها الخاص — اضغط لاستعراض أبرز التطبيقات:</p>
+    <div class="acc">
+      <div class="acc-item"><button class="acc-q">💼 كلية إدارة الأعمال والمحاسبة<span class="sign">+</span></button>
+        <div class="acc-a"><div><b>أبرز التطبيقات:</b> تحليل البيانات وتفسير المخرجات الإحصائية، إعداد دراسات الحالة والعروض التقديمية، صياغة التقارير المالية والإدارية، تطوير حالات أعمالٍ تعليمية، ومحاكاة سيناريوهات اتخاذ القرار للطلاب.</div></div></div>
+      <div class="acc-item"><button class="acc-q">🏢 الإدارات العامة وشؤون الموظفين<span class="sign">+</span></button>
+        <div class="acc-a"><div><b>أبرز التطبيقات:</b> صياغة الخطابات والتعاميم، تلخيص محاضر الاجتماعات، إعداد التقارير الدورية، أتمتة الردود المتكررة، وتحويل المعاملات الورقية إلى إجراءاتٍ رقمية منظّمة.</div></div></div>
+      <div class="acc-item"><button class="acc-q">⚙️ الهندسة والحاسبات<span class="sign">+</span></button>
+        <div class="acc-a"><div><b>أبرز التطبيقات:</b> مراجعة وشرح الأكواد البرمجية، توثيق المشاريع التقنية، تبسيط المفاهيم المعقّدة، إعداد الوثائق الفنية، ودعم البحث والتطوير.</div></div></div>
+      <div class="acc-item"><button class="acc-q">🎓 أعضاء هيئة التدريس<span class="sign">+</span></button>
+        <div class="acc-a"><div><b>أبرز التطبيقات:</b> تطوير المناهج والمفردات، تصميم الاختبارات والأنشطة الصفية، تبسيط المراجع العلمية، إعداد المواد الإثرائية، ودعم الإرشاد الأكاديمي.</div></div></div>
+      <div class="acc-item"><button class="acc-q">🧑‍🎓 شؤون الطلاب والقبول والتسجيل<span class="sign">+</span></button>
+        <div class="acc-a"><div><b>أبرز التطبيقات:</b> الرد على الاستفسارات المتكررة، إعداد الأدلة الإرشادية، تنظيم وتصنيف البيانات، وتحسين تجربة الطالب الرقمية.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="compliance">
+  <div class="wrap reveal">
+    <div class="kicker">الحوكمة والامتثال</div>
+    <div class="sec-head"><span class="sec-no">٠٥</span><h2>التوافق مع الأنظمة الوطنية</h2><span class="ln"></span></div>
+    <p class="para">صُمِّمت المبادرة لتكون <span class="em">متوافقة بالتصميم</span> مع الأطر التنظيمية السعودية للأمن السيبراني والذكاء الاصطناعي وحماية البيانات. وفيما يلي الجهات الثلاث المرجعية وكيفية انسجام المبادرة معها:</p>
+    <div class="reg">
+      <div class="regcard">
+        <span class="badge">سدايا · SDAIA</span>
+        <h3>أخلاقيات الذكاء الاصطناعي</h3>
+        <div class="auth">الهيئة السعودية للبيانات والذكاء الاصطناعي</div>
+        <p>مبادئ أخلاقيات الذكاء الاصطناعي والمبادئ التوجيهية لاستخدام الذكاء الاصطناعي التوليدي للجهات.</p>
+        <div class="map">اعتماد أدوات من مزوّدٍ موثوق ضمن استخدامٍ مسؤول</div>
+        <div class="map">سياسة استخدام تمنع التضليل والتزييف والتحيّز</div>
+        <div class="map">احترام الملكية الفكرية وحقوق النشر</div>
+        <div class="map">إبقاء المراجعة البشرية على المخرجات</div>
+      </div>
+      <div class="regcard">
+        <span class="badge">NCA</span>
+        <h3>الأمن السيبراني</h3>
+        <div class="auth">الهيئة الوطنية للأمن السيبراني</div>
+        <p>الضوابط الأساسية للأمن السيبراني (ECC) وضوابط أمن البيانات، المطبّقة على الجهات الحكومية.</p>
+        <div class="map">اشتراك مؤسسي مُدار مركزيًا بدل حسابات فردية</div>
+        <div class="map">إدارة الهويات والصلاحيات والدخول الموحّد (SSO)</div>
+        <div class="map">تقييم أمان المزوّد ومعالجة بيانات الجهة</div>
+        <div class="map">سجلات استخدام قابلة للمراجعة والتدقيق</div>
+      </div>
+      <div class="regcard">
+        <span class="badge">PDPL</span>
+        <h3>حماية البيانات</h3>
+        <div class="auth">نظام حماية البيانات الشخصية</div>
+        <p>التزامات حوكمة البيانات الشخصية ومنع الوصول غير المصرّح به والإبلاغ عن الحوادث.</p>
+        <div class="map">تصنيف البيانات ومنع إدخال شديدة الحساسية</div>
+        <div class="map">حماية بيانات المنسوبين والطلاب</div>
+        <div class="map">ضوابط واضحة لمعالجة البيانات والاحتفاظ بها</div>
+        <div class="map">إجراءات استجابةٍ عند أي حادثٍ محتمل</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;color:var(--gold)">المبادئ السبعة لأخلاقيات الذكاء الاصطناعي (سدايا)</h3>
+    <p class="para" style="margin-top:6px">تلتزم المبادرة بالمرجعية الأخلاقية الوطنية في كامل مراحلها:</p>
+    <div class="princ">
+      <div class="pr"><div class="pic">⚖️</div><b>العدالة</b><span>عدم التحيّز والتمييز</span></div>
+      <div class="pr"><div class="pic">🔐</div><b>الخصوصية والأمن</b><span>حماية البيانات</span></div>
+      <div class="pr"><div class="pic">🛡️</div><b>الموثوقية والسلامة</b><span>أداء آمن وموثوق</span></div>
+      <div class="pr"><div class="pic">🔍</div><b>الشفافية</b><span>وضوح وقابلية التفسير</span></div>
+      <div class="pr"><div class="pic">📋</div><b>المساءلة</b><span>مسؤولية واضحة</span></div>
+      <div class="pr"><div class="pic">🤝</div><b>الإنسانية</b><span>خدمة الإنسان</span></div>
+      <div class="pr"><div class="pic">🌱</div><b>المنفعة المجتمعية</b><span>أثر إيجابي مستدام</span></div>
+      <div class="pr"><div class="pic">🏛️</div><b>الحوكمة</b><span>إطار تنظيمي منضبط</span></div>
+    </div>
+    <p class="note">* الأطر مذكورة استنادًا إلى الجهات الرسمية (سدايا، الهيئة الوطنية للأمن السيبراني، ونظام حماية البيانات الشخصية). يُوصى بمراجعة إدارة تقنية المعلومات والجهة القانونية بالجامعة لاعتماد متطلبات التطبيق التفصيلية.</p>
+  </div>
+</section>
+
+<section class="blk" id="safe">
+  <div class="wrap reveal">
+    <div class="kicker">القرار التقني الصحيح</div>
+    <div class="sec-head"><span class="sec-no">٠٦</span><h2>اشتراك مؤسسي لا فردي</h2><span class="ln"></span></div>
+    <p class="para">الفارق الجوهري الذي يجعل المبادرة آمنة ومتوافقة مع الأنظمة:</p>
+    <div class="vs">
+      <div class="vcard bad"><h3>⚠️ حساب فردي (Pro)</h3>
+        <ul>
+          <li>مصمَّم لشخصٍ واحد، ومشاركته تخالف الشروط</li>
+          <li>لا تحكّم إداري ولا إدارة مركزية</li>
+          <li>حماية أضعف لبيانات الجهة</li>
+          <li>صعوبة المتابعة والحوكمة والتدقيق</li>
+          <li>لا يلبّي متطلبات الأمن السيبراني المؤسسي</li>
+        </ul></div>
+      <div class="vcard good"><h3>✦ حساب مؤسسي (Team / Enterprise)</h3>
+        <ul>
+          <li>حسابٌ مستقل ومؤمَّن لكل منسوب</li>
+          <li>إدارة مركزية للمستخدمين والصلاحيات والفوترة</li>
+          <li>عدم استخدام بيانات الجهة في التدريب افتراضيًا</li>
+          <li>دخول موحّد (SSO) وسجلاتٌ للحوكمة</li>
+          <li>منسجم مع ضوابط NCA و PDPL</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="road">
+  <div class="wrap reveal">
+    <div class="kicker">التنفيذ المرحلي</div>
+    <div class="sec-head"><span class="sec-no">٠٧</span><h2>خارطة الطريق</h2><span class="ln"></span></div>
+    <p class="para">أربع مراحل مضبوطة تبدأ بكلية إدارة الأعمال — اضغط على أي مرحلة لعرض تفاصيلها:</p>
+    <div class="road">
+      <div class="step active"><div class="bullet">١</div>
+        <div class="body"><h3>التهيئة والحوكمة<span class="dur">أسبوعان</span></h3>
+        <div class="detail">اعتماد الاشتراك المؤسسي، إعداد الحسابات الفردية، صياغة سياسة الاستخدام المقبول، ومراجعة المتطلبات مع تقنية المعلومات والجهة القانونية.</div></div></div>
+      <div class="step"><div class="bullet">٢</div>
+        <div class="body"><h3>الإطلاق والتدريب<span class="dur">أسبوع</span></h3>
+        <div class="detail">جلسة تدريب توعوي تشمل الاستخدام الآمن وضوابط الخصوصية، ثم تفعيل الحسابات وبدء الاستخدام الفعلي.</div></div></div>
+      <div class="step"><div class="bullet">٣</div>
+        <div class="body"><h3>التشغيل والمتابعة<span class="dur">فصل دراسي</span></h3>
+        <div class="detail">استخدامٌ فعلي مع دعمٍ مستمر، ورصد مؤشرات الاستخدام والوقت الموفَّر ومستوى الرضا.</div></div></div>
+      <div class="step"><div class="bullet">٤</div>
+        <div class="body"><h3>التقييم والتوسّع<span class="dur">أسبوعان</span></h3>
+        <div class="detail">إعداد تقرير الأثر بالأرقام، ورفع التوصية لإدارة الجامعة بالتوسّع المرحلي على بقية الكليات والإدارات.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="calc">
+  <div class="wrap reveal">
+    <div class="kicker">الميزانية</div>
+    <div class="sec-head"><span class="sec-no">٠٨</span><h2>حاسبة التكلفة التفاعلية</h2><span class="ln"></span></div>
+    <p class="para">حرّك المؤشر لتقدير التكلفة السنوية حسب عدد الحسابات ونوع الاشتراك ودورة الفوترة:</p>
+    <div class="calc">
+      <div class="calc-row">
+        <div class="calc-controls">
+          <div class="ctl"><label>عدد الحسابات: <b id="seatVal">١٠</b></label>
+            <input type="range" id="seats" min="5" max="50" value="10" step="1"></div>
+          <div class="ctl"><label>نوع الاشتراك المؤسسي</label>
+            <div class="toggle" id="plan"><button class="on" data-p="standard">قياسي (Team)</button><button data-p="premium">متقدّم (Premium)</button></div></div>
+          <div class="ctl"><label>دورة الفوترة</label>
+            <div class="toggle" id="bill"><button class="on" data-b="annual">سنوي (أوفر)</button><button data-b="monthly">شهري</button></div></div>
+        </div>
+        <div class="calc-out">
+          <div class="small">التكلفة التقديرية السنوية</div>
+          <div class="price"><span id="usd">٢٬٤٠٠</span> $</div>
+          <div class="sar">≈ <span id="sar">٩٬٠٠٠</span> ريال</div>
+          <div class="per">للحساب: <span id="per">٢٠</span> $ شهريًا</div>
+        </div>
+      </div>
+      <p class="note">* أرقام تقديرية لأغراض التخطيط مبنية على فئات الأسعار المعلنة لعام ٢٠٢٦ (التحويل ١ دولار ≈ ٣٫٧٥ ريال). الكلفة التجريبية لكلية واحدة تقع في حدود ترخيص برنامجٍ متخصصٍ واحد. يُوصى بالحصول على عرضٍ رسمي للقطاع الأكاديمي — قد تتوفر خصومات تعليمية.</p>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="risk">
+  <div class="wrap reveal">
+    <div class="kicker">إدارة المخاطر</div>
+    <div class="sec-head"><span class="sec-no">٠٩</span><h2>المخاطر وإجراءات التخفيف</h2><span class="ln"></span></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>المخاطرة المحتملة</th><th>إجراء التخفيف</th></tr></thead>
+        <tbody>
+          <tr><td><b>إدخال بيانات حساسة في الأداة</b></td><td>سياسة استخدامٍ واضحة + تصنيف البيانات + تدريب توعوي</td></tr>
+          <tr><td><b>ضعف التبنّي من المستخدمين</b></td><td>اختيار روّادٍ متحمّسين + دعمٌ مستمر + قصص نجاح</td></tr>
+          <tr><td><b>الاعتماد المفرط دون مراجعة</b></td><td>التأكيد على مبدأ المراجعة البشرية لكل مخرجات</td></tr>
+          <tr><td><b>تجاوز التكلفة المتوقعة</b></td><td>حصر التجربة بعددٍ محدود وفترةٍ محددة قابلة للقياس</td></tr>
+          <tr><td><b>مخاوف الخصوصية والامتثال</b></td><td>اشتراك مؤسسي + توافق NCA و PDPL + مراجعة قانونية</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="kpi">
+  <div class="wrap reveal">
+    <div class="kicker">القياس والمساءلة</div>
+    <div class="sec-head"><span class="sec-no">١٠</span><h2>مؤشرات قياس النجاح</h2><span class="ln"></span></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>المؤشر</th><th>المستهدف خلال التجربة</th></tr></thead>
+        <tbody>
+          <tr><td><b>نسبة التفعيل النشط للحسابات</b></td><td>٨٠٪ فأكثر من الحسابات الممنوحة</td></tr>
+          <tr><td><b>متوسط الوقت الموفَّر أسبوعيًا</b></td><td>ساعتان فأكثر للمستخدم</td></tr>
+          <tr><td><b>رضا المستفيدين</b></td><td>٤ من ٥ فأعلى</td></tr>
+          <tr><td><b>المهام/المعاملات المؤتمتة</b></td><td>يُحدَّد مع الكلية في بداية التجربة</td></tr>
+          <tr><td><b>الالتزام بسياسة الاستخدام</b></td><td>صفر مخالفات جوهرية</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="close-blk" id="close">
+  <div class="wrap reveal">
+    <div class="kicker" style="text-align:center">التوصية الختامية</div>
+    <h2>إطلاق نموذجٍ تجريبي على <span class="hl">كلية إدارة الأعمال</span> لفصلٍ دراسي واحد، بكلفةٍ محدودة وتوافقٍ تنظيمي كامل</h2>
+    <p class="lead" style="margin:0 auto;text-align:center">المخاطر مضبوطة · العائد مرتفع · متوافق مع سدايا و NCA و PDPL · ومنسجم مع رؤية المملكة ٢٠٣٠ وسياسة الجامعة القائمة.</p>
+    <a class="cta" href="#why">نحو ريادةٍ رقمية مسؤولة</a>
+  </div>
+</section>
+
+<footer>
+  <div class="motto kufi">جامعة الطائف — التعليم · البحث · الإبداع</div>
+  مقترح مبادرة الذكاء الاصطناعي المؤسسي · مقدَّم لكلية إدارة الأعمال تمهيدًا لعرضه على إدارة الجامعة · ٢٠٢٦
+</footer>
+
+<script>
+  const arNum = n => n.toLocaleString('ar-EG');
+
+  // progress bar
+  const prog=document.getElementById('prog');
+  addEventListener('scroll',()=>{const h=document.documentElement;
+    prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';});
+
+  // accordion
+  document.querySelectorAll('.acc-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement,a=item.querySelector('.acc-a'),open=item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(i=>{i.classList.remove('open');i.querySelector('.acc-a').style.maxHeight=null});
+      if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+    });
+  });
+
+  // roadmap
+  document.querySelectorAll('.step').forEach(s=>s.addEventListener('click',()=>{
+    document.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));s.classList.add('active');
+  }));
+
+  // calculator
+  const PRICES={standard:{annual:20,monthly:25},premium:{annual:100,monthly:125}};
+  let plan='standard',bill='annual';
+  const seats=document.getElementById('seats'),seatVal=document.getElementById('seatVal');
+  const usdEl=document.getElementById('usd'),sarEl=document.getElementById('sar'),perEl=document.getElementById('per');
+  function calc(){
+    const n=+seats.value,per=PRICES[plan][bill],annual=per*12*n;
+    seatVal.textContent=arNum(n);usdEl.textContent=arNum(annual);
+    sarEl.textContent=arNum(Math.round(annual*3.75));perEl.textContent=arNum(per);
+    seats.style.setProperty('--pct',((n-5)/45*100)+'%');
+  }
+  seats.addEventListener('input',calc);
+  document.querySelectorAll('#plan button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#plan button').forEach(x=>x.classList.remove('on'));b.classList.add('on');plan=b.dataset.p;calc();}));
+  document.querySelectorAll('#bill button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#bill button').forEach(x=>x.classList.remove('on'));b.classList.add('on');bill=b.dataset.b;calc();}));
+  calc();
+
+  // reveal + counters
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');
+      e.target.querySelectorAll('.num[data-to]').forEach(animate);io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+  function animate(el){const to=+el.dataset.to,suf=el.getAttribute('suf')||'';let t0=performance.now();
+    (function tick(t){const p=Math.min((t-t0)/1200,1);
+      el.textContent=arNum(Math.round((1-Math.pow(1-p,3))*to))+suf;if(p<1)requestAnimationFrame(tick);})(t0);}
+</script>
+</body>
+</html>
